@@ -102,8 +102,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias sshGalahad="ssh quinlanbrennan@100.88.84.88"
-alias sshMatrix="ssh quinlanbrennan@matrix.math.vt.edu"
 alias c="clear"
 alias ls.="ls -a"
 bindkey '^I' autosuggest-accept
