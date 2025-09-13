@@ -110,6 +110,8 @@ bindkey '^I' autosuggest-accept
 
 eval "$(atuin init zsh)"
 eval "$(zoxide init zsh)"
+
+# Automatically opens my terminal into TMUX
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
