@@ -104,14 +104,24 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias c="clear"
 alias ls.="ls -a"
-bindkey '^I' autosuggest-accept
+
+# Custom widget: accept suggestion if available, otherwise do completion
+function my-tab-widget() {
+  if [[ -n "$ZSH_AUTOSUGGEST_BUFFER" ]]; then
+    zle autosuggest-accept
+  else
+    zle expand-or-complete
+  fi
+}
+zle -N my-tab-widget
+bindkey '^I' my-tab-widget
 
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
 eval "$(zoxide init zsh)"
 
-# Automatically opens my terminal into TMUX
+# Automatically opens TMUX on terminal start
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
