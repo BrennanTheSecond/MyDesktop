@@ -21,7 +21,7 @@ ZSH_THEME="agnoster"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
@@ -70,7 +70,7 @@ zstyle ':omz:update' frequency 7
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-autopair zsh-autoswitch-virtualenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,6 +104,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias c="clear"
 alias ls.="ls -a"
+alias cat="batcat"
+alias e="exit"
 
 # Custom widget: accept suggestion if available, otherwise do completion
 function my-tab-widget() {
@@ -125,3 +127,23 @@ eval "$(zoxide init zsh)"
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
+
+# Add autocorrect toggle to failed commands
+setopt CORRECT
+
+# Autocomplete first menu match
+setopt auto_menu menu_complete
+
+#Auto param slash
+setopt auto_param_slash
+
+# not case sensitive
+setopt no_case_glob no_case_match
+
+setopt globdots
+
+# Auto cd
+setopt autocd
+
+
+
